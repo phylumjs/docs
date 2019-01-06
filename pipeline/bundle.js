@@ -35,6 +35,10 @@ module.exports = webpackTask(async ctx => {
 					use: 'vue-loader'
 				},
 				{
+					test: /\.md$/,
+					use: ['vue-loader', markdown]
+				},
+				{
 					type: 'javascript/auto',
 					test: /vue\.index\.json$/,
 					use: dev ? 'vue-webpack-index' : ['babel-loader', 'vue-webpack-index']
@@ -61,10 +65,6 @@ module.exports = webpackTask(async ctx => {
 					}
 				]),
 				{
-					test: /\.md$/,
-					use: dev ? markdown : ['babel-loader', markdown]
-				},
-				{
 					test: /\.png$/,
 					use: {
 						loader: 'file-loader',
@@ -78,7 +78,7 @@ module.exports = webpackTask(async ctx => {
 		},
 		resolve: {
 			extensions: ['.js', '.json', '.vue'],
-			mainFiles: ['index', 'vue.index.json'],
+			mainFiles: ['index.js', 'vue.index.json'],
 			alias: {
 				vue$: dev ? 'vue/dist/vue.runtime.js' : 'vue/dist/vue.runtime.min.js'
 			}

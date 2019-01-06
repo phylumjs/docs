@@ -1,6 +1,10 @@
 'use strict'
 
+import pipeline from './pipeline'
+
 export default {
-	title: 'Hello World!',
-	content: () => import('./index.md')
+	content: () => import('./index.vue'),
+	children: {
+		pipeline
+	}
 }

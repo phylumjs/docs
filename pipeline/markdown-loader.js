@@ -9,13 +9,13 @@ module.exports = function (content) {
 	marked(content, {
 		headerIds: false,
 		highlight: (code, lang) => {
-			return highlight(lang, code, true).value
+			return lang ? highlight(lang, code, true).value : code
 		}
 	}, (err, html) => {
 		if (err) {
 			cb(err)
 		} else {
-			cb(null, `export default '${stringEscape(html)}'`)
+			cb(null, `<template><div>${html}</div></template>`)
 		}
 	})
 }
