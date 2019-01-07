@@ -6,17 +6,8 @@
 				<b-navbar-brand to="/">PhylumJS</b-navbar-brand>
 				<b-collapse is-nav id="nav_collapse">
 					<b-navbar-nav class="ml-auto">
-						<b-nav-dropdown text="Manual">
-							<b-dd-header>Available soon...</b-dd-header>
-						</b-nav-dropdown>
-						<b-nav-dropdown text="API">
-							<b-dd-item to="/api/pipeline">Pipeline</b-dd-item>
-							<b-dd-item to="/api/tasks">Tasks</b-dd-item>
-						</b-nav-dropdown>
-						<b-nav-dropdown text="Ecosystem">
-							<b-dd-header>Official Packages</b-dd-header>
-							<b-dd-item to="/ecosystem/webpack-task">Webpack Task</b-dd-item>
-							<b-dd-item to="/ecosystem/process-task">Process Task</b-dd-item>
+						<b-nav-dropdown v-for="section in sections" :key="section.path" :text="section.name">
+							<b-dd-item v-for="page in section.pages" :key="page.path" :to="section.path + page.path">{{page.name}}</b-dd-item>
 						</b-nav-dropdown>
 						<b-nav-item href="https://github.com/phylumjs" target="_blank">GitHub</b-nav-item>
 					</b-navbar-nav>
@@ -27,6 +18,16 @@
 		<router-view/>
 	</div>
 </template>
+
+<script>
+	import {sections} from '../pages'
+
+	export default {
+		created() {
+			this.sections = sections
+		}
+	}
+</script>
 
 <style lang="less" scoped>
 	@import 'colors';

@@ -8,11 +8,3 @@ The PhylumJS pipeline is a powerful async task runner that is designed for runni
 
 ### State
 Task states are cached by the pipeline and are reused to prevent running the same task multiple times. In addition, tasks can implement logic for cleaning up resources when they are no longer needed or when the pipeline is disabled.
-
-## API
-+ [Pipeline](/api/pipeline)
-+ [Tasks](/api/tasks)
-
-## Ecosystem
-+ [Webpack Task](/ecosystem/webpack-task) - Task for integrating webpack.
-+ [Process Task](/ecosystem/process-task) - Utility for running child processes.
