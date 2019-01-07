@@ -6,6 +6,17 @@
 				<div class="lead">
 					High performance build framework for javascript applications
 				</div>
+				<br>
+				<a href="https://travis-ci.org/phylumjs/pipeline" target="_blank">
+					<img src="https://travis-ci.org/phylumjs/pipeline.svg?branch=master">
+				</a>
+				<a href="https://coveralls.io/github/phylumjs/pipeline?branch=master" target="_blank">
+					<img src="https://coveralls.io/repos/github/phylumjs/pipeline/badge.svg?branch=master">
+				</a>
+				<a href="https://www.npmjs.com/package/@phylum/pipeline" target="_blank">
+					<img src="https://img.shields.io/npm/v/@phylum/pipeline.svg">
+					<img src="https://img.shields.io/npm/l/@phylum/pipeline.svg">
+				</a>
 			</b-container>
 		</div>
 		<home-content/>
