@@ -7,12 +7,6 @@ async function example(ctx) {
 }
 ```
 
-### `ctx.data`
-An object to store custom data that is related to the current context.
-```js
-ctx.data.foo = 'bar'
-```
-
 ### `ctx.pipeline`
 A reference to the pipeline.<br>
 This can be used to access the `pipeline.data` object:
