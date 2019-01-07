@@ -10,7 +10,8 @@ export default new Router({
 		{path: '/', component: () => import('./pages/home')},
 		{path: '/api/pipeline', component: () => import('./pages/api-pipeline')},
 		{path: '/api/tasks', component: () => import('./pages/api-tasks')},
-		{path: '/manual/concepts', component: () => import('./pages/manual-concepts')},
-		{path: '/manual/writing-tasks', component: () => import('./pages/manual-writing-tasks')}
+		{path: '/ecosystem/process-task', component: () => import('./pages/ecosystem-process-task')},
+		{path: '/ecosystem/webpack-task', component: () => import('./pages/ecosystem-webpack-task')},
+		{path: '*', component: () => import('./pages/404')}
 	]
 })

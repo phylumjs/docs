@@ -7,8 +7,7 @@
 				<b-collapse is-nav id="nav_collapse">
 					<b-navbar-nav class="ml-auto">
 						<b-nav-dropdown text="Manual">
-							<b-dd-item to="/manual/concepts">Concepts</b-dd-item>
-							<b-dd-item to="/manual/writing-tasks">Writing Tasks</b-dd-item>
+							<b-dd-header>Available soon...</b-dd-header>
 						</b-nav-dropdown>
 						<b-nav-dropdown text="API">
 							<b-dd-item to="/api/pipeline">Pipeline</b-dd-item>
