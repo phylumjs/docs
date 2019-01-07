@@ -32,10 +32,7 @@ module.exports = function (content) {
 				<b-container class="document">
 					${html}
 				</b-container>
-			</template>
-			<style lang="less">
-				@import 'document.less';
-			</style>`)
+			</template>`)
 		}
 	})
 }
