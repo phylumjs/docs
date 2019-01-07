@@ -6,91 +6,37 @@
 				<b-navbar-brand to="/">PhylumJS</b-navbar-brand>
 				<b-collapse is-nav id="nav_collapse">
 					<b-navbar-nav class="ml-auto">
-						<b-nav-item to="/pipeline">Documentation</b-nav-item>
+						<b-nav-dropdown text="Manual">
+							<b-dd-item to="/manual/concepts">Concepts</b-dd-item>
+							<b-dd-item to="/manual/writing-tasks">Writing Tasks</b-dd-item>
+						</b-nav-dropdown>
+						<b-nav-dropdown text="API">
+							<b-dd-item to="/api/pipeline">Pipeline</b-dd-item>
+							<b-dd-item to="/api/tasks">Tasks</b-dd-item>
+						</b-nav-dropdown>
+						<b-nav-dropdown text="Ecosystem">
+							<b-dd-header>Official Packages</b-dd-header>
+							<b-dd-item to="/ecosystem/webpack-task">Webpack Task</b-dd-item>
+							<b-dd-item to="/ecosystem/process-task">Process Task</b-dd-item>
+						</b-nav-dropdown>
 						<b-nav-item href="https://github.com/phylumjs" target="_blank">GitHub</b-nav-item>
 					</b-navbar-nav>
 				</b-collapse>
 			</b-container>
 		</b-navbar>
 		<b-navbar><b-nav-item><br></b-nav-item></b-navbar>
-		<div v-if="content">
-			<b-container v-if="content.wrapper === undefined || content.wrapper" class="content-wrapper">
-				<b-row>
-					<b-col lg="3"><app-content-nav :target="root" :path="[]"/></b-col>
-					<b-col><component :is="content"/></b-col>
-				</b-row>
-			</b-container>
-			<component v-else :is="content"/>
-		</div>
+		<router-view/>
 	</div>
 </template>
 
-<script>
-	import content from '../content'
-	import notFound from './app-not-found.vue'
-
-	export default {
-		watch: {
-			$route: {immediate: true, handler: 'onNavigate'}
-		},
-
-		data() {
-			return {
-				content: null
-			}
-		},
-
-		created() {
-			this.root = content
-		},
-
-		methods: {
-			onNavigate() {
-				const path = this.$route.path
-					.split('/')
-					.filter(c => c.length)
-					.map(decodeURIComponent)
-
-				let page = content
-				for (const component of path) {
-					if (!(page = page.children && page.children[component])) {
-						break
-					}
-				}
-
-				if (page) {
-					page.content().then(exports => {
-						this.content = exports.default
-					})
-				} else {
-					this.content = notFound
-				}
-			}
-		}
-	}
-</script>
-
 <style lang="less" scoped>
-	.content-wrapper {
-		padding-top: 40px;
-	}
+	@import 'colors';
+
 	.navbar {
-		background-color: rgb(35, 40, 45);
-	}
-	.app-content-nav {
-		padding-bottom: 45px;
+		background-color: @bg-dark;
 	}
 </style>
 
 <style lang="less">
-	pre {
-		padding: 13px 20px 12px;
-		background-color: rgba(0, 0, 0, 0.05);
-		border-radius: 5px;
-	}
-	*+h1 { padding-top: 40px; }
-	*+h2 { padding-top: 25px; }
-	*+h3 { padding-top: 20px; }
-	*+h4 { padding-top: 15px; }
-	*+h5 { padding-top: 10px; }
+	@import 'document';
 </style>

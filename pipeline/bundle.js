@@ -48,7 +48,10 @@ module.exports = webpackTask(async ctx => {
 					use: [
 						dev ? 'vue-style-loader' : CssExtractPlugin.loader,
 						'css-loader',
-						'less-loader'
+						{
+							loader: 'less-loader',
+							options: {paths: ['./src/styles']}
+						}
 					]
 				},
 				{
@@ -77,8 +80,8 @@ module.exports = webpackTask(async ctx => {
 			]
 		},
 		resolve: {
-			extensions: ['.js', '.json', '.vue'],
-			mainFiles: ['index.js', 'vue.index.json'],
+			extensions: ['.js', '.json', '.vue', '.md'],
+			mainFiles: ['index', 'vue.index.json'],
 			alias: {
 				vue$: dev ? 'vue/dist/vue.runtime.js' : 'vue/dist/vue.runtime.min.js'
 			}

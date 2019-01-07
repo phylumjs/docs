@@ -15,7 +15,7 @@ module.exports = function (content) {
 		if (err) {
 			cb(err)
 		} else {
-			cb(null, `<template><div>${html}</div></template>`)
+			cb(null, `<template><b-container class="document">${html}</b-container></template><style lang="less">@import 'document.less';</style>`)
 		}
 	})
 }

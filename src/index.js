@@ -7,7 +7,6 @@ import router from './router'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import 'highlight.js/styles/atom-one-light.css'
 
 Vue.use(BootstrapVue)
 
