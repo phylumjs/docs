@@ -25,6 +25,16 @@
 	export default {
 		created() {
 			this.sections = sections
+		},
+
+		watch: {
+			$route: {
+				handler() {
+					if (window.scrollTo) {
+						window.scrollTo(0, 0)
+					}
+				}
+			}
 		}
 	}
 </script>
