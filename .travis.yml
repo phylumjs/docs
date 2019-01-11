@@ -2,6 +2,4 @@ language: node_js
 node_js:
   - "node"
 
-deploy:
-  provider: script
-  script: echo Hello World!
+script: echo Hello World!
