@@ -6,4 +6,6 @@ script:
   - npm run compile
 
 deploy:
-  - echo Hello World!
+  provider: script
+  script:
+    - echo Hello World!
