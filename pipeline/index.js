@@ -5,8 +5,6 @@ const fs = require('fs-extra')
 const parseCommandLine = require('command-line-args')
 const Pipeline = require('@phylum/pipeline')
 const bundle = require('./bundle')
-const devServer = require('./dev-server')
-const deploy = require('./deploy')
 
 async function prepare(ctx) {
 	Object.assign(ctx.pipeline.data, parseCommandLine([
