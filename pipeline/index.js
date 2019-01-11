@@ -6,12 +6,14 @@ const parseCommandLine = require('command-line-args')
 const Pipeline = require('@phylum/pipeline')
 const bundle = require('./bundle')
 const devServer = require('./dev-server')
+const deploy = require('./deploy')
 
 async function prepare(ctx) {
 	Object.assign(ctx.pipeline.data, parseCommandLine([
 		{name: 'watch', alias: 'w', type: Boolean},
 		{name: 'dev', alias: 'd', type: Boolean},
-		{name: 'run', alias: 'x', type: Boolean}
+		{name: 'run', alias: 'x', type: Boolean},
+		{name: 'deploy', type: Boolean}
 	]))
 
 	await fs.emptyDir(path.resolve(__dirname, '../dist'))
@@ -20,5 +22,10 @@ async function prepare(ctx) {
 Pipeline.cli(async ctx => {
 	await ctx.use(prepare)
 	await ctx.use(bundle)
-	await ctx.use(devServer)
+	if (ctx.pipeline.data.run) {
+		await ctx.use(require('./dev-server'))
+	}
+	if (ctx.pipeline.data.deploy) {
+		await ctx.use(require('./deploy'))
+	}
 })

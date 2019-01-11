@@ -5,8 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "node pipeline -wxd",
-		"compile": "node pipeline",
-		"deploy": "node pipeline && gh-pages --dist dist --branch master --repo https://github.com/phylumjs/phylumjs.github.io.git"
+		"compile": "node pipeline"
 	},
 	"repository": "github:phylumjs/phylum.js.org",
 	"author": "Max J. Polster",

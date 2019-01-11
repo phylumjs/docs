@@ -7,10 +7,6 @@ const WebSocket = require('ws')
 const bundle = require('./bundle')
 
 module.exports = ctx => {
-	if (!ctx.pipeline.data.run) {
-		return
-	}
-
 	const app = express()
 	app.use(express.static(path.join(__dirname, '../dist')))
 	app.use(express.static(path.join(__dirname, '../src/static')))
