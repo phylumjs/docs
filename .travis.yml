@@ -8,4 +8,4 @@ script:
 deploy:
   provider: script
   script:
-    - echo Hello World!
+    - node deploy_from_travis
