@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - "node"
+
+jobs:
+  include:
+    - deploy:
+      script: echo Hello World!
+
+after_success: npm run report-coverage
