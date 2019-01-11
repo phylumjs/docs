@@ -8,4 +8,4 @@ script:
 deploy:
   provider: script
   script:
-    - node deploy_from_travis
+    - node deploy-from-travis
