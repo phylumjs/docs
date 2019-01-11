@@ -7,8 +7,7 @@ require('gh-pages').publish('dist', {
 	user: {
 		name: 'Max J. Polster',
 		email: 'max.polster@id-p.de'
-	},
-	push: false
+	}
 }, err => {
 	if (err) {
 		console.error(err)
