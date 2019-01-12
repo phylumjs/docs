@@ -1,12 +1,21 @@
 # Changelog
 Any changes like new features and removed or deprecated api will be documented on this page.<br>
-*Bold entries denote breaking changes.*
++ Bold entries denote breaking changes.
++ Deprecated api may be removed in the next major version.
 
 ## v2.0.0 (planned)
 + **Add promise executor support for `addDisposal`.**
 + **Removed `ctx.data`.** because of it's missleading name.
-+ Added `pipeline.getContext(..)`
-+ Added `ctx.exports` as replacement for `ctx.data`.
++ Add `pipeline.getContext(..)`
++ Add `ctx.exports` as replacement for `ctx.data`.
++ Add `ctx.isDisposed`
++ Add `ctx.isDependency(..)`
++ Add `ctx.isDependent(..)`
++ Add context support for `ctx.use(..)`
++ Add context support for `ctx.pull(..)`
++ Add context support for `ctx.pullImmediate(..)`
++ Add context support for `ctx.isPulling(..)`
++ **Add context support for `ctx.drop(..)`**
 
 ## v1.4.0
-+ Deprecated `ctx.data` - This feature will be removed in `v2`
++ Deprecated `ctx.data`
