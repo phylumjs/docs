@@ -7,7 +7,7 @@ async function task(ctx) {
 ```
 
 ## Lifecycle &amp; Resources
-Task states are cached by the pipeline. After a task has completed, it can still have resources like file system watchers. Tasks can be disposed to free these resources and reset it's state. This can be done manually, by disabling the pipeline or by pushing updates from dependency tasks.
+Task states are cached by the pipeline. After a task has completed, it can still have resources like file system watchers. Tasks can be disposed to free these resources and reset it's state. This can be done manually, by disabling the pipeline or by dependency tasks pushing updates.
 
 Disposed tasks are re-executed with a new context when required.<br>
 When the entry task is disposed and the pipeline is still enabled, the pipeline will re execute the entry task.
@@ -43,7 +43,7 @@ async function task(ctx) {
 }
 ```
 
-##### Examples
+##### Example
 
 ![](/images/tasks_dependencies.svg)
 
@@ -96,8 +96,6 @@ async function task(ctx) {
 	})
 }
 ```
-
-The following diagram outlines how the update process functions:
 
 ##### Example
 
