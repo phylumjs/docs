@@ -5,7 +5,7 @@ Any changes like new features and removed or deprecated api will be documented o
 
 ## v2.0.0 (planned)
 + **Add promise executor support for `addDisposal`.**
-+ **Removed `ctx.data`.** because of it's missleading name.
++ **Remove `ctx.data`.** because of it's missleading name.
 + Add `pipeline.getContext(..)`
 + Add `ctx.exports` as replacement for `ctx.data`.
 + Add `ctx.isDisposed`
