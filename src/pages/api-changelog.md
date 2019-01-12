@@ -16,6 +16,7 @@ Any changes like new features and removed or deprecated api will be documented o
 + Add context support for `ctx.pullImmediate(..)`
 + Add context support for `ctx.isPulling(..)`
 + **Add context support for `ctx.drop(..)`**
++ Cli: exit with code `1` when the pipeline never resolves.
 
 ## v1.4.0
 + Deprecated `ctx.data`
