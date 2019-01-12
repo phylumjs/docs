@@ -43,6 +43,10 @@ async function task(ctx) {
 }
 ```
 
+##### Examples
+
+![](/images/tasks_dependencies.svg)
+
 ## Push Updates
 Every task can manually push updates to it's dependents (or the pipeline if the entry task).
 ```js
@@ -58,6 +62,10 @@ async function task(ctx) {
 	return 'initial result'
 }
 ```
+
+##### Example
+
+![](/images/tasks_push_updates.svg)
 
 ## Handling Updates
 By default, a task is disposed when a dependency pushes an update which will result in re-execution in the most cases. However, a task can implement it's own logic for handling updates without beeing disposed.
@@ -88,6 +96,12 @@ async function task(ctx) {
 	})
 }
 ```
+
+The following diagram outlines how the update process functions:
+
+##### Example
+
+![](/images/tasks_handle_updates.svg)
 
 ## Concurrency
 Like any other async function, dependency tasks can be executed in parallel
