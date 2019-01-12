@@ -28,8 +28,7 @@ export const sections = [
 		name: 'Ecosystem',
 		path: '/ecosystem',
 		pages: [
-			{name: 'Webpack Task', path: '/webpack-task', component: () => import('./ecosystem-webpack-task')},
-			{name: 'Process Task', path: '/process-task', component: () => import('./ecosystem-process-task')}
+			{name: 'Official Packages', path: '/packages', component: () => import('./ecosystem-packages')}
 		]
 	}
 ]
