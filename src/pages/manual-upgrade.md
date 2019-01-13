@@ -1,4 +1,4 @@
-# Upgrade to version v2.0.0
+# Upgrade to version 2
 
 ### `ctx.data`
 `ctx.data` is now removed because of it's missleading name.<br>
