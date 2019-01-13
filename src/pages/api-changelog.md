@@ -12,6 +12,7 @@ Any changes like new features and removed or deprecated api will be documented o
 + Add `ctx.isDisposed`
 + Add `ctx.isDependency(..)`
 + Add `ctx.isDependent(..)`
++ Add `ctx.disposeAfterPipeline`
 + Add context support for `ctx.use(..)`
 + Add context support for `ctx.pull(..)`
 + Add context support for `ctx.pullImmediate(..)`
