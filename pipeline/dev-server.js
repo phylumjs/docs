@@ -17,16 +17,17 @@ module.exports = ctx => {
 	server.listen(8080)
 	console.log('Dev server listening on port 8080')
 
-	ctx.on('dispose', addDisposal => {
-		addDisposal(new Promise((resolve, reject) => {
-			server.on('error', reject)
-			server.close(resolve)
-		}))
-
-		addDisposal(new Promise((resolve, reject) => {
-			wss.on('error', reject)
-			wss.close(resolve)
-		}))
+	ctx.on('dispose', async () => {
+		await Promise.all([
+			new Promise((resolve, reject) => {
+				server.on('error', reject)
+				server.close(resolve)
+			}),
+			new Promise((resolve, reject) => {
+				wss.on('error', reject)
+				wss.close(resolve)
+			})
+		])
 	})
 
 	ctx.pull(bundle, s => s.then(() => {
