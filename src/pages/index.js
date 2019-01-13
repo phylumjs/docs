@@ -12,7 +12,8 @@ export const sections = [
 		pages: [
 			{name: 'Pipeline Usage', path: '/pipeline', component: () => import('./manual-pipeline')},
 			{name: 'Writing Tasks', path: '/tasks', component: () => import('./manual-tasks')},
-			{name: 'Writing a CLI', path: '/cli', component: () => import('./manual-cli')}
+			{name: 'Writing a CLI', path: '/cli', component: () => import('./manual-cli')},
+			{name: 'Upgrade Guides', path: '/upgrade', component: () => import('./manual-upgrade')}
 		]
 	},
 	{

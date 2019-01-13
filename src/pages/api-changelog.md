@@ -5,7 +5,7 @@ Any changes like new features and removed or deprecated api will be documented o
 + Deprecated api may be removed in the next major version.
 
 ## v2.0.0 (planned)
-+ **Remove `ctx.data`.** because of it's missleading name.
++ **Remove `ctx.data`.**
 + Allow context 'dispose' event handlers to return a promise.
 + Deprecated `addDisposal` for context 'dispose' event handlers.
 + Add `pipeline.getContext(..)`
@@ -18,7 +18,7 @@ Any changes like new features and removed or deprecated api will be documented o
 + Add context support for `ctx.pull(..)`
 + Add context support for `ctx.pullImmediate(..)`
 + Add context support for `ctx.isPulling(..)`
-+ **Add context support for `ctx.drop(..)`**
++ Add context support for `ctx.drop(..)`
 + Cli: exit with code `1` when the pipeline never resolves.
 
 ## v1.4.0
