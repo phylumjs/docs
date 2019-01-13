@@ -4,7 +4,4 @@ npm i @phylum/pipeline
 ```
 
 # Pipeline
-The PhylumJS pipeline is a powerful async task runner that is designed for running builds with high concurrency. Every task has it's own context to use other tasks as dependencies, manage resources like file system watchers for development or to push output updates to dependent tasks. When a task pushes updates to dependent tasks, they are re-executed by default. Tasks can also implement custom logic for handling updates.
-
-### State
-Task states are cached by the pipeline and are reused to prevent running the same task multiple times. In addition, tasks can implement logic for cleaning up resources when they are no longer needed or when the pipeline is disabled.
+The PhylumJS pipeline is a powerful async task runner for [nodejs](https://nodejs.org/) that is designed for running tasks at high concurrency. It has a dependency tracking mechanism between tasks to handle task updates by only re-executing the right tasks. Unchanged task outputs are cached and can be reused.
