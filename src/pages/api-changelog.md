@@ -1,5 +1,6 @@
 # Changelog
 Any changes like new features and removed or deprecated api will be documented on this page.<br>
++ Italic entries are not yet implemented.
 + Bold entries denote breaking changes.
 + Deprecated api may be removed in the next major version.
 
@@ -17,6 +18,7 @@ Any changes like new features and removed or deprecated api will be documented o
 + Add context support for `ctx.isPulling(..)`
 + **Add context support for `ctx.drop(..)`**
 + Cli: exit with code `1` when the pipeline never resolves.
++ *Worker process support.*
 
 ## v1.4.0
 + Deprecated `ctx.data`
