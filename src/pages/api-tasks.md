@@ -23,9 +23,34 @@ new Pipeline(async ctx => {
 })
 ```
 
+### `ctx.exports`
+An object for exposing an api that is meant to be used when the task runs.
+```js
+async function foo(ctx) {
+	ctx.exports.hello = () => console.log('Hello World!')
+}
+
+pipeline.getContext(foo).exports.hello()
+// -> Hello World!
+```
+
+### `ctx.isDisposed`
+True if this task is disposed (or currently disposing).
+
 ### `ctx.isUnused`
 True if this task is not used by another task.<br/>
 Unused tasks will be disposed when the entry task resolves or rejects if the pipeline option `autoDisposeUnused` is enabled.
+
+### `ctx.disposeAfterPipeline`
+Get or set if this task should be disposed when the pipeline resolves or rejects.<br>
+*Note that the task will be disposed silently.*
+```js
+async function foo(ctx) {
+	ctx.disposeAfterPipeline = true
+}
+```
++ Set to any `<truthy>` value to dispose when the pipeline resolves or rejects.
++ Returns `<boolean>`
 
 ### `ctx.use(fn)`
 Use another task as dependency.<br>
@@ -39,7 +64,34 @@ async function bar(ctx) {
 	await ctx.use(foo) // -> 'Hello World!'
 }
 ```
-+ fn `<function>` - The dependency task.
++ fn `<function> | <Pipeline.Context>` - The dependency task.
+
+### `ctx.isDependency(fn)`
+Check if another task is a dependency of this task.
+```js
+async function foo(ctx) { }
+
+async function bar(ctx) {
+	await ctx.use(foo)
+	ctx.isDependency(foo) === true
+}
+```
++ fn `<function> | <Pipeline.Context>` - The task.
++ returns `<boolean>` - True if the task is a dependency.
+
+### `ctx.isDependent(fn)`
+Check if this task is a dependency of another task.
+```js
+async function foo(ctx) {
+	ctx.isDependent(bar) === true
+}
+
+async function bar(ctx) {
+	await ctx.use(foo)
+}
+```
++ fn `<function> | <Pipeline.Context>` - The task.
++ returns `<boolean>` - True if this task is a dependency.
 
 ### `ctx.push(state)`
 Push an update to all dependents (and the pipeline if this task is the entry task).
@@ -65,7 +117,7 @@ async function example(ctx) {
 	})
 }
 ```
-+ fn `<function>` - The dependency task.
++ fn `<function> | <Pipeline.Context>` - The dependency task.
 + handler `<function>` - The function to handle updates.
 	+ state `<Promise>` - The new state of the dependency after the update.
 
@@ -79,7 +131,7 @@ async function example(ctx) {
 	})
 }
 ```
-+ fn `<function>` - The dependency task.
++ fn `<function> | <Pipeline.Context>` - The dependency task.
 + handler `<function>` - The function to handle the initial state and updates.
 	+ state `<Promise>` - The initial or new state of the dependency.
 
@@ -92,7 +144,7 @@ async function example(ctx) {
 	ctx.isPulling(foo) === true
 }
 ```
-+ fn `<function>` - The dependency task.
++ fn `<function> | <Pipeline.Context>` - The dependency task.
 + returns `<boolean>` - True if an update handler is registered for the specified task. Otherwise false.
 
 ### `ctx.drop(fn)`
@@ -104,7 +156,7 @@ async function example(ctx) {
 	ctx.drop(foo)
 }
 ```
-+ fn `<function>` - The dependency task.
++ fn `<function> | <Pipeline.Context>` - The dependency task.
 
 ### `ctx.dispose([silent])`
 Dispose this task.<br/>
@@ -128,12 +180,13 @@ async function example(ctx) {
 		ctx.push('something changed')
 	})
 
-	ctx.on('dispose', addDisposal => {
-		addDisposal(watcher.destroy())
+	ctx.on('dispose', async () => {
+		await watcher.destroy()
 	})
 
 	return 'nothing changed'
 }
 ```
-+ addDisposal `<function>` - A function to add a disposal state.
++ return `<Promise>` - A promise to delay the re-execution of the task or the promise returned by `pipeline.disable()`.
++ addDisposal `<function>` - **Deprecated.** A function to add a disposal state.
 	+ state `<Promise> | <any>` - A promise to delay the re-execution of the task or the promise returned by `pipeline.disable()`.

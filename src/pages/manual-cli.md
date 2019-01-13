@@ -23,22 +23,20 @@ const pipeline = require('./pipeline')
 
 ### Command line args
 Command line args can be parsed from within the pipeline.<br>
-By parsing command line args in a seperate task, it is ensured, that they are not parsed multiple times when the entry task is re-executed.<br>
 The following example uses [this package](https://www.npmjs.com/package/command-line-args) for parsing.
 ```js
 const parse = require('command-line-args')
 
-function commandLineArgs(ctx) {
-	const args = parse([
+function args(ctx) {
+	return parse([
 		{name: 'message', alias: 'm'}
 	])
-	ctx.pipeline.data.message = args.message
 }
 
 Pipeline.cli({module}, async ctx => {
-	await ctx.use(commandLineArgs)
+	const {message} = await ctx.use(args)
 
-	console.log(ctx.pipeline.data.message)
+	console.log(message)
 })
 ```
 

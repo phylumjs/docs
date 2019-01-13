@@ -4,7 +4,7 @@ Any changes like new features and removed or deprecated api will be documented o
 + Bold entries denote breaking changes.
 + Deprecated api may be removed in the next major version.
 
-## v2.0.0 (planned)
+## v2.0.0
 + **Remove `ctx.data`.**
 + Allow context 'dispose' event handlers to return a promise.
 + Deprecated `addDisposal` for context 'dispose' event handlers.

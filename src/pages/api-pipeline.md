@@ -43,6 +43,14 @@ await pipeline.disable()
 ```
 + returns `<Promise>` - A promise that resolves when all tasks have been disposed.
 
+### `pipeline.getContext(fn)`
+Get an existing task context.
+```js
+const ctx = pipeline.getContext(foo)
+```
++ fn `<null> | <function> | <Pipeline.Context>` - The task executor or the context itself.
++ returns `<null> | <Pipeline.Context>` - The context or null if not found.
+
 ### `pipeline.disposeUnused()`
 Manually dispose unused tasks.<br/>
 *This can be used to dispose unused tasks while the pipeline is still enabled.*
@@ -56,7 +64,7 @@ Utility for implementing a simple cli that runs this pipeline.
 + The pipeline will be disabled when the process receives a 'SIGINT'.
 + The process will exit with code..
 	+ ..**0** - if the pipeline resolved and the event loop is empty.
-	+ ..**1** - if the pipeline rejected and the event loop is empty.
+	+ ..**1** - if the pipeline rejected or never resolved and the event loop is empty.
 	+ ..**1** - if an unhandled rejection occurs.
 	+ ..**1** - if the process receives a 'SIGINT' while the pipeline is disabled.
 

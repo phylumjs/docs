@@ -24,24 +24,41 @@ async function task(ctx) {
 }
 ```
 
-If cleaning up resources is asynchronous, a promise can be attached to delay re-execution of this task.
+If needed, 'dispose' event listeners may return a promise.<br>
+*This will delay the re-execution of this task and the promise returned by pipeline.disable(..)*
 ```js
-ctx.on('dispose', addDisposal => {
-	addDisposal(somePromise)
+ctx.on('dispose', async () => {
+	await watcher.close()
 })
 ```
 
 ## Dependencies
-A task can require dependency tasks.<br>
+A task can use other tasks as dependencies.<br/>
+This will basically ensure that the current task is updated when a dependency updates.
 ```js
-async function foo(ctx) {
-	return 'bar'
+async function entry(ctx) {
+	await Promise.all([
+		ctx.use(taskA),
+		ctx.use(taskB)
+	])
 }
 
-async function task(ctx) {
-	await ctx.use(foo)
+async function taskA(ctx) {
+	await ctx.use(taskC)
 }
+
+async function taskB(ctx) {
+	await Promise.all([
+		ctx.use(taskC),
+		ctx.use(taskD)
+	])
+}
+
+async function taskC() { }
+async function taskD() { }
 ```
+
+**Note**, that it is recommended to run distinct tasks in parallel using `Promise.all` to improve speed.
 
 ##### Example
 
@@ -70,7 +87,7 @@ async function task(ctx) {
 ## Handling Updates
 By default, a task is disposed when a dependency pushes an update which will result in re-execution in the most cases. However, a task can implement it's own logic for handling updates without beeing disposed.
 ```js
-async function task(ctx) {
+async function bar(ctx) {
 	const initialResult = await ctx.use(foo)
 
 	ctx.pull(foo, state => {
@@ -84,9 +101,9 @@ async function task(ctx) {
 }
 ```
 
-If it is not needed to get the initial value of the task, `ctx.pullImmediate(..)` can be used instead:
+As an alternative `ctx.pullImmediate(..)` can be used which will also start the dependency and call the handler with the initial (or current) state.
 ```js
-async function task(ctx) {
+async function bar(ctx) {
 	ctx.pullImmediate(foo, state => {
 		state.then(value => {
 			// 'value' is the initial or updated result.
@@ -100,14 +117,3 @@ async function task(ctx) {
 ##### Example
 
 ![](/images/tasks_handle_updates.svg)
-
-## Concurrency
-Like any other async function, dependency tasks can be executed in parallel
-```js
-async function task(ctx) {
-	await Promise.all([
-		ctx.use(a),
-		ctx.use(b)
-	])
-}
-```
