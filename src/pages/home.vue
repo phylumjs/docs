@@ -22,7 +22,7 @@
 		<home-content/>
 		<b-container class="document">
 			<div v-for="section in sections" :key="section.path">
-				<h5>{{section.name}}</h5>
+				<h3>{{section.name}}</h3>
 				<div v-for="page in section.pages">
 					<router-link :to="section.path + page.path">{{page.name}}</router-link>
 				</div>
