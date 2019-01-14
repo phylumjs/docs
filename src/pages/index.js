@@ -13,6 +13,7 @@ export const sections = [
 			{name: 'Pipeline Usage', path: '/pipeline', component: () => import('./manual-pipeline')},
 			{name: 'Writing Tasks', path: '/tasks', component: () => import('./manual-tasks')},
 			{name: 'Writing a CLI', path: '/cli', component: () => import('./manual-cli')},
+			{name: 'Workers (preview)', path: '/workers', component: () => import('./manual-workers')},
 			{name: 'Upgrade Guides', path: '/upgrade', component: () => import('./manual-upgrade')}
 		]
 	},
