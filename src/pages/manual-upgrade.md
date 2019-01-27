@@ -1,3 +1,17 @@
+# Upgrade to version 3
+
+### Breaking changes
+When upgrading from an earlier version, you **must** apply the following changes:
+
+| old style | new style |
+|-|-|
+| `const Pipeline = require('@phylum/pipeline')` | `const {Pipeline} = reqire('@phylum/pipeline')` |
+| `Pipeline.cli` | `const {cli} = require('@phylum/pipeline')` |
+
+<br>
+
+
+
 # Upgrade to version 2
 
 ### `ctx.data`
