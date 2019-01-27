@@ -6,19 +6,14 @@ The following node module (`pipeline.js`) implements a very basic cli:
 #!/usr/bin/env node
 'use strict'
 
-const Pipeline = require('@phylum/pipeline')
+const {cli} = require('@phylum/pipeline')
 
-Pipeline.cli({module}, async ctx => {
+cli(async ctx => {
 	console.log('Hello World!')
 })
 ```
-This module can be executed using node
 ```bash
 node pipeline
-```
-or can be required by another module
-```js
-const pipeline = require('./pipeline')
 ```
 
 ### Command line args
@@ -33,13 +28,12 @@ function args(ctx) {
 	])
 }
 
-Pipeline.cli({module}, async ctx => {
+cli(async ctx => {
 	const {message} = await ctx.use(args)
 
 	console.log(message)
 })
 ```
-
 ```bash
 node pipeline -m "Hello World!"
 ```

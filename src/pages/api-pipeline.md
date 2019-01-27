@@ -1,6 +1,6 @@
 # Pipeline API
 ```js
-const Pipeline = require('@phylum/pipeline')
+const {Pipeline} = require('@phylum/pipeline')
 ```
 
 ### `new Pipeline(entry[, options])`
@@ -74,7 +74,7 @@ pipeline.cli({module})
 + options `<object>` - Optional. An object with the following options:
 	+ module `<Module>` - Optional. If specified and the module is not the main module, the pipeline will be exported by that module instead of running it.
 
-### `Pipeline.cli([options, ]entry)`
+### `cli([options, ]entry)`
 Shorthand for creating a new pipeline and calling `.cli(..)` on it.
 ```js
 const {cli} = require('@phylum/pipeline')

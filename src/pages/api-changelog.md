@@ -4,6 +4,11 @@ Any changes like new features and removed or deprecated api will be documented o
 + Bold entries denote breaking changes.
 + Deprecated api may be removed in the next major version.
 
+## v3.0.0
++ **Move pipeline class to named export.**
++ **Move static cli utility from pipeline to named export.**
++ **Remove `addDisposl` for context `dispose` event handlers.**
+
 ## v2.0.0
 + **Remove `ctx.data`.**
 + Allow context 'dispose' event handlers to return a promise.

@@ -4,7 +4,7 @@ The pipeline class manages task contexts and states.
 npm i @phylum/pipeline
 ```
 ```js
-const Pipeline = require('@phylum/pipeline')
+const {Pipeline} = require('@phylum/pipeline')
 ```
 
 ## Entry

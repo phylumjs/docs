@@ -187,6 +187,4 @@ async function example(ctx) {
 	return 'nothing changed'
 }
 ```
-+ return `<Promise>` - A promise to delay the re-execution of the task or the promise returned by `pipeline.disable()`.
-+ addDisposal `<function>` - **Deprecated.** A function to add a disposal state.
-	+ state `<Promise> | <any>` - A promise to delay the re-execution of the task or the promise returned by `pipeline.disable()`.
++ return `<any> | <Promise>` - A promise to delay the re-execution of the task or the promise returned by `pipeline.disable()`.
