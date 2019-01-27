@@ -3,7 +3,7 @@
 const path = require('path')
 const fs = require('fs-extra')
 const parseCommandLine = require('command-line-args')
-const Pipeline = require('@phylum/pipeline')
+const {cli} = require('@phylum/pipeline')
 const bundle = require('./bundle')
 
 async function prepare(ctx) {
@@ -17,7 +17,7 @@ async function prepare(ctx) {
 	await fs.emptyDir(path.resolve(__dirname, '../dist'))
 }
 
-Pipeline.cli(async ctx => {
+cli(async ctx => {
 	await ctx.use(prepare)
 	await ctx.use(bundle)
 	if (ctx.pipeline.data.run) {
