@@ -21,13 +21,16 @@
 		</div>
 		<home-content/>
 		<b-container class="document">
-			<div v-for="section in sections" :key="section.path">
-				<h3>{{section.name}}</h3>
-				<div v-for="page in section.pages">
-					<router-link :to="section.path + page.path">{{page.name}}</router-link>
-				</div>
-				<br>
-			</div>
+			<hr>
+			<b-row>
+				<b-col v-for="section in sections" :key="section.path" cols="12" md="4">
+					<h4>{{section.name}}</h4>
+					<div v-for="page in section.pages" :key="page.path">
+						<router-link :to="section.path + page.path">{{page.name}}</router-link>
+					</div>
+					<br>
+				</b-col>
+			</b-row>
 		</b-container>
 	</div>
 </template>
