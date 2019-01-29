@@ -64,7 +64,7 @@ async function bar(ctx) {
 	await ctx.use(foo) // -> 'Hello World!'
 }
 ```
-+ fn `<function> | <Pipeline.Context>` - The dependency task.
++ fn `<function> | <Context>` - The dependency task.
 
 ### `ctx.isDependency(fn)`
 Check if another task is a dependency of this task.
@@ -76,7 +76,7 @@ async function bar(ctx) {
 	ctx.isDependency(foo) === true
 }
 ```
-+ fn `<function> | <Pipeline.Context>` - The task.
++ fn `<function> | <Context>` - The task.
 + returns `<boolean>` - True if the task is a dependency.
 
 ### `ctx.isDependent(fn)`
@@ -90,7 +90,7 @@ async function bar(ctx) {
 	await ctx.use(foo)
 }
 ```
-+ fn `<function> | <Pipeline.Context>` - The task.
++ fn `<function> | <Context>` - The task.
 + returns `<boolean>` - True if this task is a dependency.
 
 ### `ctx.push(state)`
@@ -112,28 +112,30 @@ Accept updates from a dependency.<br>
 Using only .pull(..) does not run the dependency and the handler is only called for future states, not the current one.
 ```js
 async function example(ctx) {
-	ctx.pull(foo, state => {
+	ctx.pull(foo, (state, sourceCtx) => {
 		// 'foo' has updated.
 	})
 }
 ```
-+ fn `<function> | <Pipeline.Context>` - The dependency task.
++ fn `<function> | <Context>` - The dependency task.
 + handler `<function>` - The function to handle updates.
 	+ state `<Promise>` - The new state of the dependency after the update.
+	+ sourceCtx `<Context>` - The context that caused the update.
 
 ### `ctx.pullImmediate(fn, handler)`
 Use another task as dependency and accept updates.<br>
 The handler will be called [immediately](https://nodejs.org/dist/latest/docs/api/timers.html#timers_setimmediate_callback_args) with the current state of the task.
 ```js
 async function example(ctx) {
-	ctx.pullImmediate(foo, state => {
+	ctx.pullImmediate(foo, (state, sourceCtx) => {
 		// 'foo' has been started or updated.
 	})
 }
 ```
-+ fn `<function> | <Pipeline.Context>` - The dependency task.
++ fn `<function> | <Context>` - The dependency task.
 + handler `<function>` - The function to handle the initial state and updates.
 	+ state `<Promise>` - The initial or new state of the dependency.
+	+ sourceCtx `<Context>` - The context that caused the update.
 
 ### `ctx.isPulling(fn)`
 Check if an update handler was registered using `.pull(..)` or `.pullImmediate(..)`
@@ -144,7 +146,7 @@ async function example(ctx) {
 	ctx.isPulling(foo) === true
 }
 ```
-+ fn `<function> | <Pipeline.Context>` - The dependency task.
++ fn `<function> | <Context>` - The dependency task.
 + returns `<boolean>` - True if an update handler is registered for the specified task. Otherwise false.
 
 ### `ctx.drop(fn)`
@@ -156,7 +158,7 @@ async function example(ctx) {
 	ctx.drop(foo)
 }
 ```
-+ fn `<function> | <Pipeline.Context>` - The dependency task.
++ fn `<function> | <Context>` - The dependency task.
 
 ### `ctx.dispose([silent])`
 Dispose this task.<br/>

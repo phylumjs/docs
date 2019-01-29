@@ -1,8 +1,10 @@
 # Changelog
 Any changes like new features and removed or deprecated api will be documented on this page.<br>
-+ Italic entries are not yet implemented.
 + Bold entries denote breaking changes.
 + Deprecated api may be removed in the next major version.
+
+## v3.1.0
++ Add context argument to `resolve`, `reject`, `dispose-error` events and update handlers.
 
 ## v3.0.0
 + **Move pipeline class to named export.**

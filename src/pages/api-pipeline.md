@@ -48,8 +48,8 @@ Get an existing task context.
 ```js
 const ctx = pipeline.getContext(foo)
 ```
-+ fn `<null> | <function> | <Pipeline.Context>` - The task executor or the context itself.
-+ returns `<null> | <Pipeline.Context>` - The context or null if not found.
++ fn `<null> | <function> | <Context>` - The task executor or the context itself.
++ returns `<null> | <Context>` - The context or null if not found.
 
 ### `pipeline.disposeUnused()`
 Manually dispose unused tasks.<br/>
@@ -89,23 +89,26 @@ cli({module}, async ctx => {
 ### `Event: 'resolve'`
 The `resolve` event is emitted when the entry task resolves.
 ```js
-pipeline.on('resolve', value => {
+pipeline.on('resolve', (value, ctx) => {
 	console.log(value)
 })
 ```
++ ctx `<Context>` - The current entry context.
 
 ### `Event: 'reject'`
 The `reject` event is emitted when the entry task rejects.
 ```js
-pipeline.on('reject', err => {
+pipeline.on('reject', (err, ctx) => {
 	console.error(err)
 })
 ```
++ ctx `<Context>` - The current entry context.
 
 ### `Event: 'dispose-error'`
 The `dispose-error` event is emitted when an error occurs while disposing a task.
 ```js
-pipeline.on('dispose-error', err => {
+pipeline.on('dispose-error', (err, ctx) => {
 	console.error(err)
 })
 ```
++ ctx `<Context>` - The context that caused the error.
