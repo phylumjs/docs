@@ -3,6 +3,10 @@ Any changes like new features and removed or deprecated api will be documented o
 + Bold entries denote breaking changes.
 + Deprecated api may be removed in the next major version.
 
+## v3.3.0
++ Fixed a bug where pushing an update immediately after resolving the last task output would be emitted before the last output.
++ Add outputStream api.
+
 ## v3.2.0
 + Add pipeline and context extension api.
 
