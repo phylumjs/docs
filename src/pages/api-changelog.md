@@ -3,6 +3,9 @@ Any changes like new features and removed or deprecated api will be documented o
 + Bold entries denote breaking changes.
 + Deprecated api may be removed in the next major version.
 
+## v3.2.0
++ Add pipeline and context extension api.
+
 ## v3.1.0
 + Add context argument to `resolve`, `reject`, `dispose-error` events and update handlers.
 

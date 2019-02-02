@@ -22,6 +22,7 @@ export const sections = [
 		pages: [
 			{name: 'Pipeline', path: '/pipeline', component: () => import('./api-pipeline')},
 			{name: 'Tasks', path: '/tasks', component: () => import('./api-tasks')},
+			{name: 'Extension', path: '/extension', component: () => import('./api-extension')},
 			{name: 'Changelog', path: '/changelog', component: () => import('./api-changelog')}
 		]
 	},
