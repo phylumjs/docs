@@ -8,6 +8,7 @@
 | [@phylum/webpack-task](https://github.com/phylumjs/webpack-task) | Task that bundles code using webpack |
 | [@phylum/gulp-task](https://github.com/phylumjs/gulp-task) | Embed gulp tasks in a pipeline environment |
 | [@phylum/process-task](https://github.com/phylumjs/process-task) | Utility for implementing child process tasks |
+| [@phylum/worker-task](https://github.com/phylumjs/worker-task) | Move tasks that are computationally heavy or use synchronous io to a worker thread |
 
 <br>
 
